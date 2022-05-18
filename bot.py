@@ -3,18 +3,18 @@ from time import sleep
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 
-import logininfo
+import connectInfo
 
-def gamereportBot(url):
+def gamereportBot():
     driver = webdriver.Chrome()
 
-    driver.get(url=url)
+    driver.get(url=connectInfo.connectInfo().url)
     driver.set_window_size(1920,1080)
 
     #Login
     driver.implicitly_wait(time_to_wait=100)
-    driver.find_element(by=By.XPATH, value='//*[@id="root"]/div/div/section/div[2]/fieldset/div[1]/input').send_keys(logininfo.loginInfo().id)
-    driver.find_element(by=By.XPATH, value='//*[@id="root"]/div/div/section/div[2]/fieldset/div[2]/input').send_keys(logininfo.loginInfo().pw)
+    driver.find_element(by=By.XPATH, value='//*[@id="root"]/div/div/section/div[2]/fieldset/div[1]/input').send_keys(connectInfo.connectInfo().id)
+    driver.find_element(by=By.XPATH, value='//*[@id="root"]/div/div/section/div[2]/fieldset/div[2]/input').send_keys(connectInfo.connectInfo().pw)
     driver.find_element(by=By.XPATH, value='//*[@id="root"]/div/div/section/div[2]/fieldset/button').click()
 
     # game select
@@ -141,5 +141,4 @@ def ranking_analysis(driver):
     return
 
 if __name__ == '__main__':
-    url = 'https://center.beta-gamereport.naverncp.com/'
-    gamereportBot(url)
+    gamereportBot()
